@@ -65,9 +65,9 @@ function Header({
             onClick={onClickReturn}
             data-cy="return-to-work-list"
           >
-            {isReturnEnabled && <Icons.ArrowLeft className="text-primary-active w-8" />}
+            {/* {isReturnEnabled && <Icons.ArrowLeft className="text-primary-active w-8" />} */}
             <div className="ml-1">
-              {WhiteLabeling?.createLogoComponentFn?.(React, props) || <Icons.OHIFLogo />}
+
             </div>
           </div>
         </div>

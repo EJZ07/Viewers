@@ -122,7 +122,7 @@ function SegmentationItem({
               <Icons.Info className="text-primary-active" />
             </Tooltip>
             <div className={areChildrenVisible ? '' : 'mr-[4px]'}>
-              {areChildrenVisible ? <Icons.ChevronOpen /> : <Icons.ChevronClosed />}
+              {/* {areChildrenVisible ? <Icons.ChevronOpen /> : <Icons.ChevronClosed />} */}
             </div>
           </div>
         </div>

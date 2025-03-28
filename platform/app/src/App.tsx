@@ -150,7 +150,7 @@ function App({
     commandsManager,
     hotkeysManager,
     routerBasename,
-    showStudyList,
+
   });
 
   if (oidc) {

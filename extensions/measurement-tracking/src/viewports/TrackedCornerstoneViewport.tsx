@@ -41,10 +41,14 @@ function TrackedCornerstoneViewport(
   const updateIsTracked = useCallback(() => {
     const viewport = cornerstoneViewportService.getCornerstoneViewport(viewportId);
 
+    console.log("Get Corner Stone view port...")
+
     if (viewport instanceof BaseVolumeViewport) {
       // A current image id will only exist for volume viewports that can have measurements tracked.
       // Typically these are those volume viewports for the series of acquisition.
       const currentImageId = viewport?.getCurrentImageId();
+      console.log("IS viewport instance of base volumne...")
+
 
       if (!currentImageId) {
         if (isTracked) {
@@ -87,6 +91,8 @@ function TrackedCornerstoneViewport(
           return;
         }
 
+        console.log("Update IS TRACKED....")
+
         updateIsTracked();
       }
     );
@@ -106,17 +112,20 @@ function TrackedCornerstoneViewport(
           lineDash: '',
         },
       });
+      console.log("Render Cornerstone Viewport...")
 
       cornerstoneViewportService.getRenderingEngine().renderViewport(viewportId);
 
       return;
     }
-
+    console.log("Render Cornerstone Viewport...")
     annotation.config.style.setViewportToolStyles(viewportId, {
       global: {
         lineDash: '4,4',
       },
     });
+
+
 
     cornerstoneViewportService.getRenderingEngine().renderViewport(viewportId);
 
@@ -137,7 +146,10 @@ function TrackedCornerstoneViewport(
     const addedRaw = measurementService.EVENTS.RAW_MEASUREMENT_ADDED;
     const subscriptions = [];
 
+
+
     [added, addedRaw].forEach(evt => {
+      console.log("Sending Tracked Measurement...")
       subscriptions.push(
         measurementService.subscribe(evt, ({ source, measurement }) => {
           const { activeViewportId } = viewportGridService.getState();
@@ -182,6 +194,8 @@ function TrackedCornerstoneViewport(
         trackedMeasurements
       );
 
+      console.log("Switched Measurments...")
+
       if (!newTrackedMeasurementUID) {
         return;
       }
@@ -200,6 +214,8 @@ function TrackedCornerstoneViewport(
       switchMeasurement,
       viewportId === activeViewportId
     );
+
+    console.log("A change was made...")
 
     viewportActionCornersService.addComponents([
       {

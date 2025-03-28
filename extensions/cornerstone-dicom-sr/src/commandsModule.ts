@@ -154,6 +154,7 @@ const commandsModule = (props: withAppTypes) => {
         displaySetInstanceUID
       );
 
+
       const displaySets = displaySetService.getDisplaySetsForSeries(SeriesInstanceUIDs[0]);
       if (displaySets.length) {
         viewportGridService.setDisplaySetsForViewports([

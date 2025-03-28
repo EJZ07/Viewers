@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import getSopClassHandlerModule from './getSopClassHandlerModule';
 import { srProtocol } from './getHangingProtocolModule';
 import onModeEnter from './onModeEnter';
@@ -11,6 +11,7 @@ import createReferencedImageDisplaySet from './utils/createReferencedImageDispla
 import Enums from './enums';
 
 const Component = React.lazy(() => {
+
   return import(/* webpackPrefetch: true */ './components/OHIFCornerstoneSRViewport');
 });
 

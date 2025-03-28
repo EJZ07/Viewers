@@ -52,6 +52,8 @@ export async function defaultRouteInit(
     function ({ StudyInstanceUID, SeriesInstanceUID, madeInClient = false }) {
       const seriesMetadata = DicomMetadataStore.getSeries(StudyInstanceUID, SeriesInstanceUID);
 
+      console.log("PUB SUBBBB")
+
       // checks if the series filter was used, if it exists
       const seriesInstanceUIDs = filters?.seriesInstanceUID;
       if (

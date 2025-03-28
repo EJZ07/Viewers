@@ -214,7 +214,15 @@ function TrackedMeasurementsContextProvider(
   );
 
   useEffect(() => {
+    // setInterval(() => {
+    //   console.log("Listening...")
+    // }, 2000 )
+  }, [])
+
+
+  useEffect(() => {
     // Update the state machine with the active viewport ID
+    console.log("Updating track: ", activeViewportId )
     sendTrackedMeasurementsEvent('UPDATE_ACTIVE_VIEWPORT_ID', {
       activeViewportId,
     });
@@ -259,6 +267,7 @@ function TrackedMeasurementsContextProvider(
           !displaySet.isLoaded &&
           displaySet.load
         ) {
+          console.log("Loading Active ViewPort: ", displaySet)
           await displaySet.load();
         }
 
@@ -268,7 +277,7 @@ function TrackedMeasurementsContextProvider(
           displaySet.SOPClassHandlerId === SR_SOPCLASSHANDLERID &&
           displaySet.isRehydratable === true
         ) {
-          console.log('sending event...', trackedMeasurements);
+          console.log('sending event...');
           sendTrackedMeasurementsEvent('PROMPT_HYDRATE_SR', {
             displaySetInstanceUID: displaySet.displaySetInstanceUID,
             SeriesInstanceUID: displaySet.SeriesInstanceUID,
@@ -289,6 +298,8 @@ function TrackedMeasurementsContextProvider(
   useEffect(() => {
     // The command needs to be bound to the context's sendTrackedMeasurementsEvent
     // so the command has to be registered in a React component.
+
+    console.log("RECORDED")
     commandsManager.registerCommand('DEFAULT', 'loadTrackedSRMeasurements', {
       commandFn: props => sendTrackedMeasurementsEvent('HYDRATE_SR', props),
     });

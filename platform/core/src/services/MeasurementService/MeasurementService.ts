@@ -574,6 +574,7 @@ class MeasurementService extends PubSubService {
    * @param {string} measurementUID The measurement uid
    */
   remove(measurementUID: string): void {
+    console.log("Removing annotation")
     const measurement =
       this.measurements.get(measurementUID) || this.unmappedMeasurements.get(measurementUID);
 
@@ -659,6 +660,7 @@ class MeasurementService extends PubSubService {
    */
 
   public jumpToMeasurement(viewportId: string, measurementUID: string): void {
+    console.log("Moving annotation...")
     const measurement = this.measurements.get(measurementUID);
 
     if (!measurement) {
