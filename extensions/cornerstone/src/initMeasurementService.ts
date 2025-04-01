@@ -184,7 +184,7 @@ const initMeasurementService = (
   return csTools3DVer1MeasurementSource;
 };
 
-const connectToolsToMeasurementService = (servicesManager: AppTypes.ServicesManager) => {
+const connectToolsToMeasurementService = (servicesManager: AppTypes.ServicesManager, ydoc) => {
   const {
     measurementService,
     displaySetService,
@@ -202,6 +202,7 @@ const connectToolsToMeasurementService = (servicesManager: AppTypes.ServicesMana
 
   //
   function addMeasurement(csToolsEvent) {
+    console.log("Adding measurement");
     try {
       const annotationAddedEventDetail = csToolsEvent.detail;
       const {
@@ -313,6 +314,8 @@ const connectToolsToMeasurementService = (servicesManager: AppTypes.ServicesMana
   const updatedEvt = csToolsEvents.ANNOTATION_MODIFIED;
   const removedEvt = csToolsEvents.ANNOTATION_REMOVED;
   const selectionEvt = csToolsEvents.ANNOTATION_SELECTION_CHANGE;
+
+
 
   eventTarget.addEventListener(addedEvt, addMeasurement);
   eventTarget.addEventListener(completedEvt, addMeasurement);

@@ -41,6 +41,16 @@ import { useSegmentationPresentationStore } from './stores/useSegmentationPresen
 import { imageRetrieveMetadataProvider } from '@cornerstonejs/core/utilities';
 import { updateSegmentationStats } from './utils/updateSegmentationStats';
 
+import * as Y from 'yjs';
+import { WebsocketProvider } from 'y-websocket';
+
+const ydoc = new Y.Doc();
+const provider = new WebsocketProvider('ws://localhost:1234', 'annotations-room', ydoc);
+
+provider.on('status', event => {
+  console.log(`WebSocket status: ${event.status}`); // "connecting", "connected", or "disconnected"
+});
+
 const { registerColormap } = csUtilities.colormap;
 
 // TODO: Cypress tests are currently grabbing this from the window?
@@ -172,7 +182,7 @@ export default async function init({
   initWADOImageLoader(userAuthenticationService, appConfig, extensionManager);
 
   /* Measurement Service */
-  this.measurementServiceSource = connectToolsToMeasurementService(servicesManager);
+  this.measurementServiceSource = connectToolsToMeasurementService(servicesManager, ydoc) ;
 
   initCineService(servicesManager);
   initStudyPrefetcherService(servicesManager);

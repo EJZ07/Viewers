@@ -207,6 +207,11 @@ function TrackedCornerstoneViewport(
     [measurementService, servicesManager, trackedMeasurementUID, trackedMeasurements, viewportId]
   );
 
+
+  useEffect(() => {
+
+  }, [])
+
   useEffect(() => {
     const statusComponent = _getStatusComponent(isTracked, t);
     const arrowsComponent = _getArrowsComponent(
@@ -214,6 +219,7 @@ function TrackedCornerstoneViewport(
       switchMeasurement,
       viewportId === activeViewportId
     );
+
 
     console.log("A change was made...")
 
@@ -232,7 +238,11 @@ function TrackedCornerstoneViewport(
         indexPriority: 0,
         location: viewportActionCornersService.LOCATIONS.topRight,
       },
+
+
     ]);
+
+    viewportActionCornersService.clear(viewportId)
   }, [activeViewportId, isTracked, switchMeasurement, viewportActionCornersService, viewportId]);
 
   const getCornerstoneViewport = () => {
